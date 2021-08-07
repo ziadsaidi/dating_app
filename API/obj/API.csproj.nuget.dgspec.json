@@ -1,35 +1,29 @@
 {
   "format": 1,
   "restore": {
-    "C:\\projects\\dotnet\\dating_app\\API\\API.csproj": {}
+    "/home/zied/project/dating_app/API/API.csproj": {}
   },
   "projects": {
-    "C:\\projects\\dotnet\\dating_app\\API\\API.csproj": {
+    "/home/zied/project/dating_app/API/API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\projects\\dotnet\\dating_app\\API\\API.csproj",
+        "projectUniqueName": "/home/zied/project/dating_app/API/API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\projects\\dotnet\\dating_app\\API\\API.csproj",
-        "packagesPath": "C:\\Users\\inov\\.nuget\\packages\\",
-        "outputPath": "C:\\projects\\dotnet\\dating_app\\API\\obj\\",
+        "projectPath": "/home/zied/project/dating_app/API/API.csproj",
+        "packagesPath": "/home/zied/.nuget/packages/",
+        "outputPath": "/home/zied/project/dating_app/API/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\inov\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/zied/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net6.0"
+          "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
+          "netcoreapp3.1": {
             "projectReferences": {}
           }
         },
@@ -40,32 +34,31 @@
         }
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "netcoreapp3.1": {
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[6.0.0-preview.1.21102.2, )"
+              "version": "[3.1.3, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[6.0.0-preview.1.21102.2, )"
+              "version": "[3.1.3, )"
             },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
-              "version": "[6.0.0-preview.1.21102.2, )"
+              "version": "[3.1.3, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[6.0.0-preview.1.21102.2, )"
+              "version": "[3.1.3, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[6.1.5, )"
+              "version": "[5.6.3, )"
             }
           },
           "imports": [
@@ -86,7 +79,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-preview.5.21302.13\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.201/RuntimeIdentifierGraph.json"
         }
       }
     }

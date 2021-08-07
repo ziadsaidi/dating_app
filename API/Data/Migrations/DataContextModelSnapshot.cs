@@ -13,7 +13,7 @@ namespace API.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.0-preview.1.21102.2");
+                .HasAnnotation("ProductVersion", "3.1.3");
 
             modelBuilder.Entity("API.Entities.AppUser", b =>
                 {
