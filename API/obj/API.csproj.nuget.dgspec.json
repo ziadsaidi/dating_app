@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\projects\\dotnet\\dating_app\\API\\API.csproj": {}
+    "C:\\projects\\dotnet\\dating_app\\API\\API.csproj": {}
   },
   "projects": {
-    "c:\\projects\\dotnet\\dating_app\\API\\API.csproj": {
+    "C:\\projects\\dotnet\\dating_app\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\projects\\dotnet\\dating_app\\API\\API.csproj",
+        "projectUniqueName": "C:\\projects\\dotnet\\dating_app\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "c:\\projects\\dotnet\\dating_app\\API\\API.csproj",
+        "projectPath": "C:\\projects\\dotnet\\dating_app\\API\\API.csproj",
         "packagesPath": "C:\\Users\\inov\\.nuget\\packages\\",
-        "outputPath": "c:\\projects\\dotnet\\dating_app\\API\\obj\\",
+        "outputPath": "C:\\projects\\dotnet\\dating_app\\API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -24,6 +24,7 @@
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -42,6 +43,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[3.1.13, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.1.3, )"
