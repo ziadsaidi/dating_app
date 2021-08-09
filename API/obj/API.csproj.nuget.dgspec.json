@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\projects\\dotnet\\dating_app\\API\\API.csproj": {}
+    "c:\\projects\\dotnet\\dating_app\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\projects\\dotnet\\dating_app\\API\\API.csproj": {
+    "c:\\projects\\dotnet\\dating_app\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\projects\\dotnet\\dating_app\\API\\API.csproj",
+        "projectUniqueName": "c:\\projects\\dotnet\\dating_app\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\projects\\dotnet\\dating_app\\API\\API.csproj",
+        "projectPath": "c:\\projects\\dotnet\\dating_app\\API\\API.csproj",
         "packagesPath": "C:\\Users\\inov\\.nuget\\packages\\",
-        "outputPath": "C:\\projects\\dotnet\\dating_app\\API\\obj\\",
+        "outputPath": "c:\\projects\\dotnet\\dating_app\\API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -24,7 +24,6 @@
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -66,6 +65,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.6.3, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.12.0, )"
             }
           },
           "imports": [
