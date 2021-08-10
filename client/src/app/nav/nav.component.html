@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
     <div class="container">
         <a class="navbar-brand" href="#">DatingApp</a>
@@ -7,7 +7,7 @@
         </button>
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul *ngIf="loggedIn" class="navbar-nav mr-auto">
+          <ul *ngIf="accountService.currentUser$ | async" class="navbar-nav mr-auto">
             <li class="nav-item">
               <a class="nav-link" > Matches<span class="sr-only">(current)</span></a>
             </li>
@@ -24,10 +24,10 @@
             
           </ul>
 
-          <div  *ngIf="loggedIn" dropdown class="nav-item dropdown ml-auto">
-            <button class="nav-link btn btn-link dropdown-toggle" id="navbarDropdown" dropdownToggle role="button" >
+          <div  *ngIf="accountService.currentUser$ | async" dropdown class="nav-item dropdown ml-auto">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" dropdownToggle role="button" >
               Welcome user
-            </button>
+            </a>
             <div *dropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a  class="dropdown-item" >Edit profile</a>
            
@@ -35,7 +35,7 @@
               <a  class="dropdown-item" (click)="logout()" >Logout</a>
             </div>
           </div>
-          <form autocomplete="off" *ngIf="!loggedIn" #loginForm="ngForm"  (ngSubmit)="login()"  class="form-inline ml-auto my-2 my-lg-0">
+          <form autocomplete="off" *ngIf="(accountService.currentUser$ | async)===null" #loginForm="ngForm"  (ngSubmit)="login()"  class="form-inline ml-auto my-2 my-lg-0">
             <input  [(ngModel)]="model.username"   name="username" class="form-control mr-sm-2" type="text" placeholder="Username"  aria-label="Username">
             <input  [(ngModel)]="model.password"   name="password"  class="form-control mr-sm-2" type="password" placeholder="password" aria-label="password">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login </button>
