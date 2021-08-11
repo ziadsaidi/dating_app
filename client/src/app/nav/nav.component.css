@@ -1,3 +1,18 @@
 .dropdown-toggle,.dropdown-item{
     cursor: pointer;
 }
+
+a{
+    color:inherit;
+    text-decoration: inherit;
+}
+
+a:hover,a:focus{
+    color:inherit;
+    text-decoration: inherit;
+
+}
+
+#navbarDropdown{
+ color:white;
+}

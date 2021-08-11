@@ -10,11 +10,16 @@ import {BsDropdownModule} from "ngx-bootstrap/dropdown";
 
 import { NavComponent } from './nav/nav.component';
 import { FormsModule } from '@angular/forms';
+import { HomeComponent } from './home/home.component';
+import { RegsiterComponent } from './regsiter/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent
+    NavComponent,
+    HomeComponent,
+    RegsiterComponent
+    
   ],
   imports: [
     BrowserModule,
