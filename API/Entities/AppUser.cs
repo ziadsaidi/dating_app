@@ -29,9 +29,10 @@ namespace API.Entities
          public string Country { get; set; }
          public ICollection<Photo> Photos { get; set; }
 
-         public int GetAge(){
-            return DateOfBirth.CalculateAge();
-        }
+//it causes performance issue Sql when using automapper
+        //  public int GetAge(){
+        //     return DateOfBirth.CalculateAge();
+        // }
          
          
          
