@@ -5,6 +5,7 @@ import { ListsComponent } from './lists/lists.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { MessagesComponent } from './messages/messages.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthGuard } from './_guards/auth.guard';
 
 const routes: Routes = [
@@ -23,7 +24,7 @@ const routes: Routes = [
 
   },
  
-  {path:'**',component:HomeComponent,pathMatch:'full'}
+  {path:'**',component:NotFoundComponent,pathMatch:'full'}
 ];
 
 @NgModule({

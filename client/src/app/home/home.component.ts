@@ -3,23 +3,20 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-   registerMode = false;
-   users:any;
-  constructor() { }
+  registerMode = false;
+  users: any;
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  cancelRegsiterMode(event:boolean){
+  cancelRegsiterMode(event: boolean) {
     this.registerMode = event;
-
   }
 
-  registerToggle(){
-    this.registerMode =! this.registerMode;
+  registerToggle() {
+    this.registerMode = !this.registerMode;
   }
-
 }
