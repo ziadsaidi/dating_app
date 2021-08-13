@@ -1,4 +1,5 @@
 using API.Data;
+using API.Helpers;
 using API.Interfaces;
 using API.Services;
 using Microsoft.EntityFrameworkCore;
@@ -17,12 +18,14 @@ namespace API.Extentions
             //add Custom service
 
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IUserRepository ,UserRepository>();
+            services.AddAutoMapper(typeof (AutoMapperProfiles).Assembly);
 
 
             // add db Context
             services.AddDbContext<DataContext>(options =>
             {
-                options.UseSqlite(config.GetConnectionString("DefaultConnection"));
+                options.UseNpgsql(config.GetConnectionString("PostgresConnection"));
 
             });
 

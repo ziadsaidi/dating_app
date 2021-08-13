@@ -2,17 +2,17 @@
     cursor: pointer;
 }
 
-a {
-    color: inherit;
+a{
+    color:inherit;
     text-decoration: inherit;
 }
 
-a:hover, a:focus {
-    color: inherit;
+a:hover,a:focus{
+    color:inherit;
     text-decoration: inherit;
+
 }
+
 #navbarDropdown{
-    color: white;
-    text-decoration: inherit;
-
+ color:white;
 }
