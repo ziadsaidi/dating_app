@@ -1,0 +1,17 @@
+
+<div class=" container mt-5">
+    <div class="outer">
+        <div class="middle">
+            <div class="inner">
+                <!--BEGIN CONTENT-->
+                <div class="inner-circle"><i class="fa fa-cogs"></i><span> {{error?.statusCode}}  Internal Server Error</span></div>
+                <p class="inner-status " style="color:red;"> {{error?.message}}  </p>
+                <code class="mt-5" style="background-color: whitesmoke;">
+
+                    {{error?.details}}
+                </code>
+                <!--END CONTENT-->
+            </div>
+        </div>
+    </div>
+</div>

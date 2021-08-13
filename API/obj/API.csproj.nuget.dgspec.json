@@ -1,35 +1,29 @@
 {
   "format": 1,
   "restore": {
-    "C:\\projects\\datingApp\\dating_app\\API\\API.csproj": {}
+    "/home/zied/project/dating_app/API/API.csproj": {}
   },
   "projects": {
-    "C:\\projects\\datingApp\\dating_app\\API\\API.csproj": {
+    "/home/zied/project/dating_app/API/API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\projects\\datingApp\\dating_app\\API\\API.csproj",
+        "projectUniqueName": "/home/zied/project/dating_app/API/API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\projects\\datingApp\\dating_app\\API\\API.csproj",
-        "packagesPath": "C:\\Users\\inov\\.nuget\\packages\\",
-        "outputPath": "C:\\projects\\datingApp\\dating_app\\API\\obj\\",
+        "projectPath": "/home/zied/project/dating_app/API/API.csproj",
+        "packagesPath": "/home/zied/.nuget/packages/",
+        "outputPath": "/home/zied/project/dating_app/API/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\inov\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/zied/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -41,7 +35,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
@@ -94,12 +87,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[3.1.15, 3.1.15]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -108,7 +95,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-preview.5.21302.13\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.412/RuntimeIdentifierGraph.json"
         }
       }
     }
