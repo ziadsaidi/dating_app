@@ -37,3 +37,5 @@
     transition:all 0.3s ease-in-out;
 }
 
+.ngx-gallery { display: inline-block; margin-bottom: 20px; 
+}
