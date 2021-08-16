@@ -15,9 +15,12 @@ namespace API.Extentions
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration config)
         {
        
+           // strongly type Settings
+            services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
             //add Custom service
 
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IPhotoService, PhotoService>();
             services.AddScoped<IUserRepository ,UserRepository>();
             services.AddAutoMapper(typeof (AutoMapperProfiles).Assembly);
 
