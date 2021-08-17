@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AccountService } from '../_services/account.service';
 
 @Component({
@@ -10,13 +11,15 @@ import { AccountService } from '../_services/account.service';
 export class RegsiterComponent implements OnInit {
   
    @Output() cancelResgister = new EventEmitter();
-   model:any ={}
+
 
    registerForm:FormGroup;
    maxDate:Date;
+   validationErrors : string[] =[];
 
   constructor(
     private fb:FormBuilder,
+    private router:Router,
     public accountService:AccountService) { }
 
   ngOnInit(): void {
@@ -48,13 +51,12 @@ export class RegsiterComponent implements OnInit {
   }
 
   register(){
-    console.log(this.registerForm.value);
-    console.log(this.registerForm);
-    // this.accountService.register(this.model).subscribe(user=>{
-    //   this.cancel();
-    // },err =>{
-    //   console.error(err);
-    // })
+   this.accountService.register(this.registerForm.value).subscribe(user=>{
+     this.router.navigateByUrl('/members')
+     },err =>{
+       this.validationErrors = err;
+
+     })
 
 
   }
