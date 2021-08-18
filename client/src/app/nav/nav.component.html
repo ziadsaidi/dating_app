@@ -30,8 +30,8 @@
 
           <div  *ngIf="(accountService.currentUser$ | async) as user" dropdown class="nav-item dropdown ml-auto">
             <a class="nav-link mx-2 dropdown-toggle" id="navbarDropdown" dropdownToggle role="button" >
-              <img src="{{user.photoUrl}}" alt="{{user.username}}">
-             Welcome {{user.username | titlecase}}
+              <img src="{{user.photoUrl || './assets/user.png'}}" alt="{{user.username}}">
+             Welcome {{user.knownAs | titlecase}}
             </a>
             <div *dropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a  class="dropdown-item" routerLink="/member/edit" >Edit profile</a>

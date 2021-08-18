@@ -3,10 +3,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
+using API.Helpers;
 using API.Interfaces;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace API.Data
 {
@@ -33,12 +35,30 @@ namespace API.Data
 
         }
 
-        public async Task<IEnumerable<MemberDto>> GetMembersAsync()
+        public async Task<PagedList<MemberDto>> GetMembersAsync(UserParams userParms)
         {
-            var users = await _context.Users
-                      .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
-                      .ToListAsync();
-            return users;
+            var query = _context.Users
+                    //   .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
+                    //   .AsNoTracking()
+                      .AsQueryable();
+            query = query.Where(u => u.UserName != userParms.CurrentUsername);
+            query = query.Where(u => u.Gender == userParms.Gender);
+            var minDob = DateTime.Today.AddYears(-userParms.MaxAge - 1);
+            var maxDob =  DateTime.Today.AddYears(-userParms.MinAge);
+            query = query.Where(u => u.DateOfBirth >= minDob && u.DateOfBirth <= maxDob);
+            query = userParms.OrderBy switch
+            {
+                "created" => query.OrderByDescending(u => u.Created),
+                _ => query.OrderByDescending(u => u.LastActive)
+            };
+            
+            return await PagedList<MemberDto>
+             .CreateAsync(query
+             .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
+             .AsNoTracking(), 
+             userParms.PageNumber, 
+             userParms.PageSize);
+
         }
 
         public async Task<AppUser> GetUserByIdAsync(int id)
@@ -72,20 +92,4 @@ namespace API.Data
         }
     }
 
-    internal class NewClass
-    {
-        public NewClass()
-        {
-        }
-
-        public override bool Equals(object obj)
-        {
-            return obj is NewClass other;
-        }
-
-        public override int GetHashCode()
-        {
-            return 0;
-        }
-    }
 }
