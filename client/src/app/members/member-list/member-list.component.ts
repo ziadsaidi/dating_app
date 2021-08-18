@@ -26,18 +26,15 @@ export class MemberListComponent implements OnInit {
     display:"Females"
   }];
 
-  constructor( private accountService:AccountService, private memberservice:MembersService) { 
-    this.accountService.currentUser$.pipe(take(1))
-    .subscribe(user=>{
-      this.user = user;
-      this.userParams = new UserParams(user);
-
-    })
+  constructor( private memberservice:MembersService) { 
+    this.user = memberservice.user;
+    this.userParams = memberservice.userParams;
+   
 
   }
 
   resetFilters(){
-    this.userParams = new UserParams(this.user);
+    this.userParams = this.memberservice.resetUserParams();
     this.laodMembers();
 
 
@@ -49,6 +46,7 @@ export class MemberListComponent implements OnInit {
   }
 
   laodMembers(){
+    this.memberservice.userParams = this.userParams;
     this.memberservice.getMembers(this.userParams).subscribe(response =>{
       this.members = response.result;
       this.pagintion = response.pagination;
@@ -57,6 +55,7 @@ export class MemberListComponent implements OnInit {
   }
   pageChanged(event:any){
     this.userParams.pageNumber = event.page;
+    this.memberservice.userParams = this.userParams;
     this.laodMembers();
   }
 
