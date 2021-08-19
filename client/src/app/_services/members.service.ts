@@ -1,9 +1,10 @@
 import { JsonPipe } from '@angular/common';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { LikeParams } from '../_models/likeParams';
 import { Member } from '../_models/member';
 import { PaginatedResult } from '../_models/pagination';
 import { User } from '../_models/user';
@@ -20,6 +21,8 @@ export class MembersService {
   memberCache = new Map();
   private _user:User;
   private _userParams:UserParams
+
+  private _likeParams:LikeParams = new LikeParams();
  
 
 
@@ -35,13 +38,23 @@ export class MembersService {
    }
 
    //getters and setters
-    get userParams (){
-     return this._userParams;
+    get likeParams (){
+     return this._likeParams;
    }
 
-   set userParams(params:UserParams){
-    this._userParams = params;
+   set likeParams(params:LikeParams){
+       this._likeParams = params;
    }
+
+   //getters and setters
+   get userParams (){
+    return this._userParams;
+  }
+
+  set userParams(params:UserParams){
+   this._userParams = params;
+  }
+
 
     get user (){
     return this._user;
@@ -55,6 +68,12 @@ export class MembersService {
     this.userParams = new UserParams(this.user);
     return this.userParams;
   }
+
+  resetLikeParams(){
+    this.likeParams = new LikeParams();
+    return this.likeParams;
+  }
+
 
 
 
@@ -123,8 +142,19 @@ addLike(username:string){
   return this.http.post(this.baseUrl +'likes/'+ username,{})
 }
 
-getLikes(predicate:string){
-  return this.http.get(this.baseUrl +'likes?='+predicate);
+getLikes(likeParams:LikeParams):Observable<PaginatedResult<Partial<Member[]>>>{
+
+  let params = this.getPaginationHeaders(likeParams.pageNumber,likeParams.pageSize);
+  params = params.append('predicate',likeParams.predicate);
+
+  return this.getPaginatedResult<Partial<Member[]>>(this.baseUrl +'likes?predicate='+likeParams.predicate, params)
+  .pipe(
+    map((response)=>{
+      this.memberCache.set(Object.values(likeParams).join('-'),response);
+      return response;
+    })
+  );
+ 
 }
 
 

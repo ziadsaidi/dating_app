@@ -1,2 +1,50 @@
 
 
+
+
+
+<div class="text-center">
+    <h2> {{likeParams.predicate === 'liked' ? 'Members I like': 'Members who like me'}}</h2>
+</div>
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="btn-group">
+            <button 
+            name="likeParams.predicate"
+            (click)="loadLikes()"
+            [(ngModel)]='likeParams.predicate' 
+            btnRadio='liked'
+             class="btn btn-sm btn-primary">
+             Members I like
+            </button>
+            <button 
+            name="predicate"
+            (click)="loadLikes()"
+            [(ngModel)]='likeParams.predicate' 
+            btnRadio='likedBy'
+             class="btn btn-sm btn-primary">
+             Members who like me
+            </button>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-2" *ngFor="let member of members" >
+                <app-member-card [member]="member"></app-member-card>
+            </div>
+
+        </div>
+    </div>
+
+    <div *ngIf="pagintion" class="d-flex justify-content-center">
+        <pagination
+        [(ngModel)]="pagintion.currentPage"
+        (pageChanged)="pageChanged($event)"
+        [itemsPerPage]="pagintion.itemsPerPage"
+        [boundaryLinks]="true" 
+        [totalItems]="pagintion.totalItems"
+        previousText="&lsaquo;" nextText="&rsaquo;"
+         firstText="&laquo;" lastText="&raquo;">
+    
+    </pagination>
+</div>

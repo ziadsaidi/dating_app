@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
 using API.Extentions;
+using API.Helpers;
 using API.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -23,39 +24,85 @@ namespace API.Controllers
 
 
    [HttpPost("{username}")]
-    public async Task<ActionResult> AddLike(string username)
-    {
+   public async Task<ActionResult> toggleLike(string username){
 
-         var sourceUserId = User.GetUserId();
-         var likedUser = await _userRepository.GetUserByUsernameAsync(username);
-         var sourceUser = await _likesRepostory.GetuserWithLikes(sourceUserId);
-         if(likedUser == null) return NotFound();
+     // get currently logged user
+       var sourceUserId = User.GetUserId();
+            var isLiked = true;
 
-         if(sourceUser.UserName ==username) return BadRequest("you can not like your own profile");
+            //get liked users by the currently logged user
+            var likedUser = await _userRepository.GetUserByUsernameAsync(username);
+     
+     //get hthe cuurent logged user + the users that likes him
+      var sourceUser = await _likesRepostory.GetuserWithLikes(sourceUserId);
+     if(likedUser == null) return NotFound();
+     if(sourceUser.UserName ==username) return BadRequest("you can not like your own profile");
+     var userLike = await _likesRepostory.GetUserLike(sourceUserId,likedUser.Id);
+      if(userLike != null) {
+                //remove Like From LikedUser
+                _likesRepostory.RemoveLike(userLike);
+                isLiked = false;
 
-         var userLike = await _likesRepostory.GetUserLike(sourceUserId,likedUser.Id);
-         if(userLike != null) return BadRequest("you already like this user");
 
-         userLike = new UserLike{
+            }
+        else {
+             userLike = new UserLike{
              SourceUserId= sourceUserId,
              LikedUserId = likedUser.Id
 
          };
          sourceUser.LikedUsers.Add(userLike);
-         if(await _userRepository.SaveAllAsync())return Ok();
 
-         return BadRequest("Failed to like user");
+        }
+
+      
+         if(await _userRepository.SaveAllAsync())return Ok((new { isLiked = isLiked}));
+
+         return BadRequest("Failed to like or dislike user");
+
+   }
+
+//    [HttpPost("{username}")]
+//     public async Task<ActionResult> AddLike(string username)
+//     {
+//    var sourceUserId = User.GetUserId();
+//          var likedUser = await _userRepository.GetUserByUsernameAsync(username);
+//          var sourceUser = await _likesRepostory.GetuserWithLikes(sourceUserId);
+//          if(likedUser == null) return NotFound();
+
+//          if(sourceUser.UserName ==username) return BadRequest("you can not like your own profile");
+
+//          var userLike = await _likesRepostory.GetUserLike(sourceUserId,likedUser.Id);
+//          if(userLike != null) return BadRequest("you already like this user");
+
+//          userLike = new UserLike{
+//              SourceUserId= sourceUserId,
+//              LikedUserId = likedUser.Id
+
+//          };
+//          sourceUser.LikedUsers.Add(userLike);
+//          if(await _userRepository.SaveAllAsync())return Ok();
+
+//          return BadRequest("Failed to like user");
 
 
-    }
+//     }
 
+      
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<LikeDto>>> GetUserLikes(string predicate)
+    public async Task<ActionResult<IEnumerable<LikeDto>>> GetUserLikes( [FromQuery]LikesParams likesParams)
     {
-        return Ok(await _likesRepostory.GetUserLikes(predicate,User.GetUserId()));
+            likesParams.UserId = User.GetUserId();
+            var users = await _likesRepostory.GetUserLikes(likesParams);
+            Response.AddPaginationHeader(users.CurrentPage, users.PageSize,
+            users.TotalCount, users.TotalPages);
+            return Ok(users);
 
-    }
+        }
+
+
+
 
 
 

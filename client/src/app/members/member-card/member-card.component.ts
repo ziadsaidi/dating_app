@@ -11,6 +11,7 @@ import { MembersService } from 'src/app/_services/members.service';
 export class MemberCardComponent implements OnInit {
 
   @Input() member:Member
+  isLiked :boolean = false;
   constructor(private memberService:MembersService,
     private toastr:ToastrService
     ) { }
@@ -18,10 +19,10 @@ export class MemberCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addLike(member:Member){
+  toggleLike(member:Member){
     this.memberService.addLike(member.username)
-     .subscribe(()=>{
-       this.toastr.info("you have liked "+ member.knownAs);
+     .subscribe((res:any)=>{
+        this.isLiked = res.isLiked;
      })
   }
 
