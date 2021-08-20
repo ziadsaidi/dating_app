@@ -1,5 +1,5 @@
 
-<div *ngIf="member" class="row">
+<div  class="row">
     <div class="col-4">
         <div class="card">
             <img src="{{member.photoUrl || './assets/user.png'}}" 
@@ -29,7 +29,7 @@
             <div class="card-footer">
                 <div class="btn-group d-flex">
                     <button class="btn btn-primary">Like</button>
-                    <button class="btn btn-success">Message</button>
+                    <button (click)="selectTab(3)"  class="btn btn-success">Message</button>
 
                 </div>
             </div>
@@ -38,19 +38,19 @@
 
     <div class="col-8">
 
-        <tabset class="member-tabset">
-            <tab heading='About {{member.knownAs}}'>
+        <tabset  #memberTabs class="member-tabset">
+            <tab (selectTab)="onTabActivated($event)" heading='About {{member.knownAs}}'>
                 <h4> Description</h4>
                 <p> {{member.introduction}}</p>
                 <h4> Looking for</h4>
                 <p>{{member.lookingFor}}</p>
             </tab>
-            <tab heading='Intersets'>
+            <tab (selectTab)="onTabActivated($event)"  heading='Intersets'>
                 <h4> Intersets </h4>
                 <p> {{member.interests}}</p>
               
             </tab>
-            <tab heading='Photos'>
+            <tab (selectTab)="onTabActivated($event)"  heading='Photos'>
                 <ngx-gallery
                 [options]="galleryOptions"
                 [images]="galleryImages"
@@ -62,8 +62,12 @@
                 </ngx-gallery>
                
             </tab>
-            <tab heading='Messages'>
-                <p>Messages will go here</p>
+            <tab (selectTab)="onTabActivated($event)"  heading='Messages'>
+               <app-member-messages 
+               [username]="member.username"
+               [messages]="messages">
+
+               </app-member-messages>
                 
             </tab>
 
